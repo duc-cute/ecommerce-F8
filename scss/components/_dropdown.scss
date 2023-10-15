@@ -1,0 +1,142 @@
+/** @format */
+@use "../abstracts";
+.dropdown {
+  position: absolute;
+  left: 0;
+  padding-top: 58px;
+  display: none;
+  width: min(1240px, 100%);
+
+  &__inner {
+    position: relative;
+    padding: 30px;
+    max-height: min(582px, 100vh - 168px);
+
+    border-radius: 20px;
+    background: var(--dropdown-bg-color);
+    box-shadow: 0px 40px 90px 20px var(--dropdown-shadow);
+
+    &::before {
+      content: url("../icons/dropdown.svg");
+      position: absolute;
+      top: -13px;
+      left: var(--arrow-left-pos);
+      translate: -50%;
+      filter: var(--dropdown-filter-color);
+    }
+  }
+}
+
+.top-menu {
+  position: relative;
+  &__main {
+    width: 292px;
+    height: calc(min(596px, 100vh - 168px) - 60px);
+
+    border-right: 1px solid var(--dropdown-line-color);
+    overflow-y: auto;
+  }
+}
+
+.menu-column {
+  display: flex;
+  gap: 14px;
+  &__icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+
+    @include abstracts.breakpoints(xl) {
+      display: none;
+    }
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__icon-1 {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+
+  &__icon-2 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: var(--dropdown-filter-cate);
+  }
+
+  &__heading {
+    color: var(--dropdown-heading-color);
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 26px;
+    margin-top: 4px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__item {
+    &--active > .menu-column__link {
+      color: #0071dc;
+      font-weight: 500;
+    }
+    &--active > .sub-menu {
+      display: flex;
+    }
+  }
+
+  &__link {
+    color: var(--dropdown-heading-color);
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    display: block;
+
+    &:hover {
+      color: #0071dc;
+      font-weight: 500;
+    }
+  }
+}
+
+.sub-menu {
+  position: absolute;
+  inset: 0 0 0 292px;
+  display: flex;
+  overflow-y: auto;
+  display: none;
+
+  &--not-main {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    inset: initial;
+    height: calc(min(596px, 100vh - 168px) - 60px);
+    overflow-y: auto;
+  }
+
+  &--not-main > &__column {
+    padding-left: 0;
+  }
+
+  &__column {
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+}

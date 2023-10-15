@@ -6,8 +6,13 @@
   gap: 14px;
 
   img {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
+
+    @include abstracts.breakpoints(lg) {
+      width: 24px;
+      height: 24px;
+    }
   }
   @include abstracts.breakpoints(lg) {
     gap: 10px;

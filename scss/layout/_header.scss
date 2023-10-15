@@ -6,10 +6,12 @@
 }
 .header {
   background-color: var(--header-bg-color);
+  box-shadow: 0px 20px 60px 10px var(--header-shadow-color);
 }
 
 .top-bar {
   @extend %flexItemCenter;
+  position: relative;
   padding: 30px 0;
 
   @include abstracts.breakpoints(md) {
@@ -21,10 +23,9 @@
     display: none;
     margin-right: 39px;
 
-    @include abstracts.breakpoints(md) {
+    @include abstracts.breakpoints(lg) {
       display: flex;
       align-items: center;
-      margin-right: 0;
     }
   }
 }
@@ -36,20 +37,89 @@
     margin-left: 50px;
   }
 
+  &__overlay {
+    visibility: hidden;
+    opacity: 0;
+
+    @include abstracts.breakpoints(lg) {
+      z-index: 8;
+      inset: 0;
+      position: fixed;
+      background-color: rgba(0, 0, 0, 0.4);
+      transition: visibility, opacity;
+      transition-duration: 0.5s;
+    }
+  }
+
   @include abstracts.breakpoints(lg) {
+    padding: 40px;
+    z-index: 9;
+    position: fixed;
+    inset: 0 50% 0 0;
+    background-color: #fff;
+    margin-left: 0;
+    translate: -100%;
+    transition: translate 0.5s;
+
+    &.show {
+      translate: 0;
+    }
+
+    &.show ~ &__overlay {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__close-btn {
     display: none;
+    @include abstracts.breakpoints(lg) {
+      display: block;
+      padding: 0 0 20px 0;
+    }
   }
 
   &__list {
     @extend %flexItemCenter;
-    gap: 30px;
+    @include abstracts.breakpoints(lg) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
   }
 
   &__arrow {
     margin-top: 3px;
   }
 
+  &__item {
+    width: 100%;
+    &:first-child a {
+      padding-left: 0;
+    }
+
+    &:last-child a {
+      padding-right: 0;
+    }
+
+    &:hover .dropdown {
+      display: block;
+    }
+  }
+
   &__link {
+    padding: 0 15px;
+    @include abstracts.breakpoints(lg) {
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.6rem;
+      line-height: 150%;
+
+      &:hover ~ .dropdown {
+        display: none;
+      }
+    }
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 500;

@@ -131,10 +131,12 @@ table {
   border-spacing: 0;
 }
 
+a,
 button,
 textarea,
 input,
 select {
   color: inherit;
   font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
