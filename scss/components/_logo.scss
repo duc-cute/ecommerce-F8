@@ -12,6 +12,7 @@
     @include abstracts.breakpoints(lg) {
       width: 24px;
       height: 24px;
+      margin-left: 39px;
     }
   }
   @include abstracts.breakpoints(lg) {

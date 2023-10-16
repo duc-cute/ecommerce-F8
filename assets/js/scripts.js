@@ -116,13 +116,19 @@ function handleActiveMenu() {
       if (!items.length) return;
 
       removeActive(menu);
-      items[0].classList.add(activeClass);
+      if (window.innerWidth > 991) items[0].classList.add(activeClass);
 
       Array.from(items).forEach((item) => {
         item.onmouseenter = () => {
           if (window.innerWidth <= 991) return;
           removeActive(menu);
           item.classList.add(activeClass);
+        };
+        item.onclick = () => {
+          if (window.innerWidth > 991) return;
+          removeActive(menu);
+          item.classList.add(activeClass);
+          item.scrollIntoView();
         };
       });
     });
@@ -134,6 +140,7 @@ function handleActiveMenu() {
     dropdown.onmouseleave = () => init();
   });
 }
+
 /**
  * JS toggle
  *
@@ -159,6 +166,22 @@ function initJsToggle() {
         $(target).classList.toggle("hide", !isHidden);
         $(target).classList.toggle("show", isHidden);
       });
+    };
+  });
+}
+
+window.addEventListener("template-loaded", toggleCate);
+function toggleCate() {
+  const links = $$(".js-dropdown-list > li > a");
+  console.log("links", links);
+
+  links.forEach((link) => {
+    console.log(link);
+
+    link.onclick = () => {
+      if (window.innerWidth > 991) return;
+      const item = link.closest("li");
+      item.classList.toggle("navbar__item--active");
     };
   });
 }

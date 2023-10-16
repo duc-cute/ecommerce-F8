@@ -7,6 +7,12 @@
   display: none;
   width: min(1240px, 100%);
 
+  @include abstracts.breakpoints(lg) {
+    display: none;
+    padding-top: 0;
+    position: relative;
+  }
+
   &__inner {
     position: relative;
     padding: 30px;
@@ -15,6 +21,24 @@
     border-radius: 20px;
     background: var(--dropdown-bg-color);
     box-shadow: 0px 40px 90px 20px var(--dropdown-shadow);
+
+    @include abstracts.breakpoints(lg) {
+      border-radius: none;
+      background: transparent;
+      box-shadow: none;
+      max-height: 100%;
+
+      padding-top: 14px;
+      padding-left: 0;
+      width: 100%;
+      &::before {
+        content: none !important;
+      }
+    }
+
+    @include abstracts.breakpoints(md) {
+      padding-left: 0;
+    }
 
     &::before {
       content: url("../icons/dropdown.svg");
@@ -35,6 +59,11 @@
 
     border-right: 1px solid var(--dropdown-line-color);
     overflow-y: auto;
+    @include abstracts.breakpoints(lg) {
+      border: none;
+      height: 100%;
+      width: 100%;
+    }
   }
 }
 
@@ -49,6 +78,9 @@
 
     @include abstracts.breakpoints(xl) {
       display: none;
+    }
+    @include abstracts.breakpoints(lg) {
+      display: block;
     }
   }
 
@@ -105,6 +137,9 @@
     font-weight: 400;
     line-height: 20px;
     display: block;
+    @include abstracts.breakpoints(lg) {
+      padding-bottom: 14px;
+    }
 
     &:hover {
       color: #0071dc;
@@ -117,8 +152,17 @@
   position: absolute;
   inset: 0 0 0 292px;
   display: flex;
+  justify-content: space-between;
   overflow-y: auto;
   display: none;
+
+  @include abstracts.breakpoints(lg) {
+    // display: flex;
+    flex-direction: column;
+    position: relative;
+    inset: 0;
+    overflow-y: initial;
+  }
 
   &--not-main {
     display: flex;
@@ -127,6 +171,10 @@
     inset: initial;
     height: calc(min(596px, 100vh - 168px) - 60px);
     overflow-y: auto;
+    @include abstracts.breakpoints(lg) {
+      height: 100%;
+      // display: none;
+    }
   }
 
   &--not-main > &__column {
@@ -138,5 +186,32 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    @include abstracts.breakpoints(lg) {
+      padding-left: 0;
+    }
+  }
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px;
+  color: var(--navbar-text-color);
+
+  &__icon {
+    padding-right: 16px;
+  }
+
+  &__title,
+  &__quantity {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 146.667%;
+    color: var(--navbar-text-color);
+  }
+
+  &__quantity {
+    margin-left: auto;
   }
 }

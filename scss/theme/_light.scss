@@ -22,4 +22,11 @@ html {
   --dropdown-shadow: rgba(200, 200, 200, 0.4);
   --dropdown-line-color: #d2d1d6;
   --dropdown-heading-color: #1a162e;
+
+  //Navbar Mobile
+  --navbar-bg-color: #fff;
+  --navbar-text-color: #1a162e;
+  --navbar-shadow-color: rgba(200, 200, 200, 0.4);
+  --navbar-icon-color: brightness(0) saturate(100%) invert(6%) sepia(45%)
+    saturate(1924%) hue-rotate(225deg) brightness(101%) contrast(94%);
 }
